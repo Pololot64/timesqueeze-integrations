@@ -5,8 +5,10 @@ services:
       context: ./docker
       dockerfile: Dockerfile.compose
     entrypoint: /compose-entrypoint.sh
-    ports:
-      - '3000:3000'
+    #ports:
+    #  - '3000:3000'
+    networks:
+      - automatisch-net
     depends_on:
       postgres:
         condition: service_healthy
@@ -68,3 +70,7 @@ volumes:
   automatisch_storage:
   postgres_data:
   redis_data:
+
+networks:
+  automatisch-net:
+    external: true
